@@ -1,7 +1,9 @@
 package br.com.aluras.agenda.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,7 +48,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
+        binding.activityListaAlunosBotaoAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -65,6 +67,13 @@ public class ListaAlunosActivity extends AppCompatActivity {
         ListView lv = findViewById(R.id.fragment_first_lvAlunos);
         lv.setAdapter(new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1,dao.todos()));
 
+        FloatingActionButton btAdd = findViewById(R.id.activity_ListaAlunos_botaoAdicionar);
+        btAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ListaAlunosActivity.this,FormAlunoActivity.class));
+            }
+        });
         // exibir uma mensagem por um tempo
         //Toast.makeText(this, "Fabiano Nascimento",Toast.LENGTH_LONG).show();
 
