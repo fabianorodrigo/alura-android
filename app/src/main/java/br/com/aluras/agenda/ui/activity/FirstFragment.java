@@ -1,4 +1,4 @@
-package br.com.aluras.agenda;
+package br.com.aluras.agenda.ui.activity;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import br.com.aluras.agenda.R;
 import br.com.aluras.agenda.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment {

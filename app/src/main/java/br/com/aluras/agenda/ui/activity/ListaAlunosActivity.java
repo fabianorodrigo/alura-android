@@ -1,4 +1,4 @@
-package br.com.aluras.agenda;
+package br.com.aluras.agenda.ui.activity;
 
 import android.os.Bundle;
 
@@ -13,27 +13,31 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import br.com.aluras.agenda.databinding.ActivityMainBinding;
-
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import br.com.aluras.agenda.R;
+import br.com.aluras.agenda.dao.AlunoDAO;
+import br.com.aluras.agenda.databinding.ActivityListaAlunosBinding;
+import br.com.aluras.agenda.databinding.ActivityListaAlunosBinding;
+import br.com.aluras.agenda.model.Aluno;
+
+public class ListaAlunosActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
+    private ActivityListaAlunosBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityListaAlunosBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.toolbar);
@@ -50,14 +54,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        List<String> alunos = new ArrayList<>(Arrays.asList("Fabiano","Katisoca","Rubão","Jujanelli"));
-        TextView v0 = findViewById(R.id.textView);
-        v0.setText(alunos.get(0));
-        TextView v1 = findViewById(R.id.textView2);
-        v1.setText(alunos.get(1));
-        TextView v2 = findViewById(R.id.textView3);
-        v2.setText(alunos.get(2));
+        AlunoDAO dao = new AlunoDAO();
 
+        // por alguma razão esse título está sendo sobreposto pelo comportamento dos Fragments
+        this.setTitle("Opa Galera");
+
+        // ATENÇÃO: o ListView é uma solução simples não mais tão usada como no surgimento do Android
+        // Hoje existem soluções mais rebuscadas
+        //List<String> alunos = new ArrayList<>(Arrays.asList("Fabiano","Katisoca","Rubão","Jujanelli","Mary Paul"));
+        ListView lv = findViewById(R.id.fragment_first_lvAlunos);
+        lv.setAdapter(new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1,dao.todos()));
 
         // exibir uma mensagem por um tempo
         //Toast.makeText(this, "Fabiano Nascimento",Toast.LENGTH_LONG).show();
