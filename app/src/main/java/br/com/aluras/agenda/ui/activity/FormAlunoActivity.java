@@ -39,9 +39,5 @@ public class FormAlunoActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
-    
-    
 }

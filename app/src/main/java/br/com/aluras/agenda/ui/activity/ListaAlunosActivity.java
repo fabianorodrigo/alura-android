@@ -56,16 +56,8 @@ public class ListaAlunosActivity extends AppCompatActivity {
             }
         });
 
-        AlunoDAO dao = new AlunoDAO();
-
         // por alguma razão esse título está sendo sobreposto pelo comportamento dos Fragments
         this.setTitle("Opa Galera");
-
-        // ATENÇÃO: o ListView é uma solução simples não mais tão usada como no surgimento do Android
-        // Hoje existem soluções mais rebuscadas
-        //List<String> alunos = new ArrayList<>(Arrays.asList("Fabiano","Katisoca","Rubão","Jujanelli","Mary Paul"));
-        ListView lv = findViewById(R.id.fragment_first_lvAlunos);
-        lv.setAdapter(new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1,dao.todos()));
 
         FloatingActionButton btAdd = findViewById(R.id.activity_ListaAlunos_botaoAdicionar);
         btAdd.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +73,22 @@ public class ListaAlunosActivity extends AppCompatActivity {
         /*TextView aluno = new TextView(this);
         aluno.setText("Fabiano Nascimento");
         setContentView(aluno);*/
+    }
+
+    /*
+    * OnResume vai ser executado quando desempilhar uma Activity que estava em cima.
+    * No nosso caso, quando o formulário de cadastro for fechado, queremos que busque
+    * novamente os dados novos na DAO
+    * */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AlunoDAO dao = new AlunoDAO();
+        // ATENÇÃO: o ListView é uma solução simples não mais tão usada como no surgimento do Android
+        // Hoje existem soluções mais rebuscadas
+        //List<String> alunos = new ArrayList<>(Arrays.asList("Fabiano","Katisoca","Rubão","Jujanelli","Mary Paul"));
+        ListView lv = findViewById(R.id.fragment_first_lvAlunos);
+        lv.setAdapter(new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1,dao.todos()));
     }
 
     @Override
