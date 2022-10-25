@@ -35,7 +35,8 @@ public class FormAlunoActivity extends AppCompatActivity {
                 AlunoDAO dao = new AlunoDAO();
                 dao.salva(aluno);
                 // a Intent indica onde estava e para qual activity vai
-                startActivity(new Intent(FormAlunoActivity.this,ListaAlunosActivity.class));
+                //startActivity(new Intent(FormAlunoActivity.this,ListaAlunosActivity.class));
+                finish();
             }
         });
 
