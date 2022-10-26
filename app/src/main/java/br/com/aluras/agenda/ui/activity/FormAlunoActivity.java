@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import br.com.aluras.agenda.R;
 import br.com.aluras.agenda.dao.AlunoDAO;
@@ -16,7 +15,7 @@ import br.com.aluras.agenda.model.Aluno;
 
 public class FormAlunoActivity extends AppCompatActivity {
     private AlunoDAO dao = new AlunoDAO();
-
+    private Aluno aluno;
     private EditText campoNome;
     private EditText campoEmail;
     private EditText campoTelefone;
@@ -28,6 +27,15 @@ public class FormAlunoActivity extends AppCompatActivity {
         setTitle("Novo Aluno");
         inicializacaoCampos();
         configuraBotaoSalvar();
+        Intent intent = getIntent();
+        if(intent.hasExtra("aluno")) {
+            aluno = (Aluno) getIntent().getSerializableExtra("aluno");
+            campoNome.setText(aluno.getNome());
+            campoEmail.setText(aluno.getEmail());
+            campoTelefone.setText(aluno.getTelefone());
+        }else{
+            aluno = new Aluno();
+        }
     }
 
     private void inicializacaoCampos() {
@@ -41,26 +49,30 @@ public class FormAlunoActivity extends AppCompatActivity {
         botaoSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Aluno aluno = criaAluno();
-                salva(aluno);
+                    preencheAluno();
+                    if(aluno.temIdValido()) {
+                        dao.edita(aluno);
+                    }else{
+                        dao.salva(aluno);
+                    }
+                finish();
             }
         });
     }
 
-    @NonNull
-    private Aluno criaAluno() {
+    private void preencheAluno() {
         String nome = campoNome.getText().toString();
         String telefone = campoTelefone.getText().toString();
         String email = campoEmail.getText().toString();
-        Aluno aluno = new Aluno(nome,telefone,email);
-        return aluno;
+        aluno.setNome(nome);
+        aluno.setTelefone(telefone);
+        aluno.setEmail(email);
     }
 
     private void salva(Aluno aluno){
         dao.salva(aluno);
         // a Intent indica onde estava e para qual activity vai
         //startActivity(new Intent(FormAlunoActivity.this,ListaAlunosActivity.class));
-        finish();
     }
 
 }

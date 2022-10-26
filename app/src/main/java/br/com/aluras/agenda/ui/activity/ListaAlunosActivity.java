@@ -104,15 +104,20 @@ public class ListaAlunosActivity extends AppCompatActivity {
         // ATENÇÃO: o ListView é uma solução simples não mais tão usada como no surgimento do Android
         // Hoje existem soluções mais rebuscadas
         ListView lv = findViewById(R.id.fragment_first_lvAlunos);
-        lv.setAdapter(new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1,dao.todos()));
+        List<Aluno> listaAlunos = dao.todos();
+        lv.setAdapter(new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1,listaAlunos));
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Aluno alunoEscolhido = listaAlunos.get(i);
                 //Log de INFO no Logcat
-                Log.i("INFO Posição Aluno>>>>",String.valueOf(i) + " " + String.valueOf(l));
+                //Log.i("Aluno escolhido >>>>",alunoEscolhido.getNome());
                 //Log de WARN no Logcat
-                Log.w("WARNING Posição>>>>",String.valueOf(i) + " " + String.valueOf(l));
-                Toast.makeText(ListaAlunosActivity.this,"clicou",Toast.LENGTH_LONG).show();
+                //Log.w("WARNING Posição>>>>",String.valueOf(i) + " " + String.valueOf(l));
+                Intent goToForm = new Intent(ListaAlunosActivity.this,FormAlunoActivity.class);
+                // o extra é uma forma de mandar para uma próxima Activity com algum dado/objeto (serializable)
+                goToForm.putExtra("aluno",alunoEscolhido);
+                startActivity(goToForm);
             }
         });
     }
