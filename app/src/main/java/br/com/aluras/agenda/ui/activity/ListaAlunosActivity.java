@@ -8,6 +8,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -17,6 +18,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -103,7 +105,14 @@ public class ListaAlunosActivity extends AppCompatActivity {
         // Hoje existem soluções mais rebuscadas
         ListView lv = findViewById(R.id.fragment_first_lvAlunos);
         lv.setAdapter(new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1,dao.todos()));
-
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //Log no Logcat
+                Log.i("Posição Aluno>>>>",String.valueOf(i) + " " + String.valueOf(l));
+                Toast.makeText(ListaAlunosActivity.this,"clicou",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
