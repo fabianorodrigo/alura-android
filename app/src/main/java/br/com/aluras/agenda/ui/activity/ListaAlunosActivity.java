@@ -1,5 +1,7 @@
 package br.com.aluras.agenda.ui.activity;
 
+import static br.com.aluras.agenda.ui.activity.ConstantesActitivies.CHAVE_ALUNO;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -8,7 +10,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -21,15 +22,11 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import br.com.aluras.agenda.R;
 import br.com.aluras.agenda.dao.AlunoDAO;
-import br.com.aluras.agenda.databinding.ActivityListaAlunosBinding;
 import br.com.aluras.agenda.databinding.ActivityListaAlunosBinding;
 import br.com.aluras.agenda.model.Aluno;
 
@@ -89,37 +86,46 @@ public class ListaAlunosActivity extends AppCompatActivity {
         btAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                formAluno();
+                abreFormularioModoInsercao();
             }
         });
     }
-
-    private void formAluno() {
-        startActivity(new Intent(this,FormAlunoActivity.class));
-    }
-
-
 
     private void configuraLista() {
         // ATENÇÃO: o ListView é uma solução simples não mais tão usada como no surgimento do Android
         // Hoje existem soluções mais rebuscadas
         ListView lv = findViewById(R.id.fragment_first_lvAlunos);
         List<Aluno> listaAlunos = dao.todos();
-        lv.setAdapter(new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1,listaAlunos));
+        configuraAdapter(lv, listaAlunos);
+        configuraClickItemLista(lv);
+    }
+
+    private void configuraClickItemLista(ListView lv) {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Aluno alunoEscolhido = listaAlunos.get(i);
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+                Aluno alunoEscolhido = (Aluno) adapterView.getItemAtPosition(i);
                 //Log de INFO no Logcat
                 //Log.i("Aluno escolhido >>>>",alunoEscolhido.getNome());
                 //Log de WARN no Logcat
                 //Log.w("WARNING Posição>>>>",String.valueOf(i) + " " + String.valueOf(l));
-                Intent goToForm = new Intent(ListaAlunosActivity.this,FormAlunoActivity.class);
-                // o extra é uma forma de mandar para uma próxima Activity com algum dado/objeto (serializable)
-                goToForm.putExtra("aluno",alunoEscolhido);
-                startActivity(goToForm);
+                abreFormularioModoEdicao(alunoEscolhido);
             }
         });
+    }
+    private void abreFormularioModoInsercao() {
+        startActivity(new Intent(this,FormAlunoActivity.class));
+    }
+
+    private void abreFormularioModoEdicao(Aluno aluno) {
+        Intent intentFormAluno = new Intent(ListaAlunosActivity.this,FormAlunoActivity.class);
+        // o extra é uma forma de mandar para uma próxima Activity com algum dado/objeto (serializable)
+        intentFormAluno.putExtra(CHAVE_ALUNO, aluno);
+        startActivity(intentFormAluno);
+    }
+
+    private void configuraAdapter(ListView lv, List<Aluno> listaAlunos) {
+        lv.setAdapter(new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, listaAlunos));
     }
 
     @Override
