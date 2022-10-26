@@ -8,9 +8,11 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -85,6 +87,27 @@ public class ListaAlunosActivity extends AppCompatActivity {
         adapter.addAll(dao.todos());
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add("Remover Aluno");
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        Aluno aluno = adapter.getItem((menuInfo.position));
+        remove(aluno);
+        return super.onContextItemSelected(item);
+    }
+
+    private void remove(Aluno aluno) {
+        // remove da base de dados
+        dao.remove(aluno);
+        // remove da interface
+        adapter.remove(aluno);
+    }
+
     private void configuraBotaoAdicionaAluno() {
         FloatingActionButton btAdd = findViewById(R.id.activity_ListaAlunos_botaoAdicionar);
         btAdd.setOnClickListener(new View.OnClickListener() {
@@ -101,10 +124,10 @@ public class ListaAlunosActivity extends AppCompatActivity {
         ListView lv = findViewById(R.id.fragment_first_lvAlunos);
         configuraAdapter(lv);
         configuraClickItemLista(lv);
-        configuraClickLongoItemLista(lv);
+        registerForContextMenu(lv);
     }
 
-    private void configuraClickLongoItemLista(ListView lv) {
+/*    private void configuraClickLongoItemLista(ListView lv) {
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long id) {
@@ -116,10 +139,10 @@ public class ListaAlunosActivity extends AppCompatActivity {
                 adapter.remove(aluno);
                 // Se retornar TRUE, não for passar para o evento Click normal
                 // Se retornar FALSE, vai seguir para o próximo evento
-                return true;
+                return false;
             }
         });
-    }
+    }*/
 
     private void configuraClickItemLista(ListView lv) {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
