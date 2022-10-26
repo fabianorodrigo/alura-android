@@ -101,10 +101,14 @@ public class ListaAlunosActivity extends AppCompatActivity {
         ListView lv = findViewById(R.id.fragment_first_lvAlunos);
         configuraAdapter(lv);
         configuraClickItemLista(lv);
+        configuraClickLongoItemLista(lv);
+    }
+
+    private void configuraClickLongoItemLista(ListView lv) {
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long id) {
-                Log.i("clic","cLIQUE LONGO " + String.valueOf(i));
+                //Log.i("clic","cLIQUE LONGO " + String.valueOf(i));
                 Aluno aluno = (Aluno) adapterView.getItemAtPosition(i);
                 // remove da base de dados
                 dao.remove(aluno);
