@@ -63,6 +63,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         this.setTitle("Opa Galera");
 
         configuraBotaoAdicionaAluno();
+        configuraLista();
         // exibir uma mensagem por um tempo
         //Toast.makeText(this, "Fabiano Nascimento",Toast.LENGTH_LONG).show();
 
@@ -80,7 +81,8 @@ public class ListaAlunosActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        configuraLista();
+        adapter.clear();
+        adapter.addAll(dao.todos());
     }
 
     private void configuraBotaoAdicionaAluno() {
@@ -97,8 +99,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         // ATENÇÃO: o ListView é uma solução simples não mais tão usada como no surgimento do Android
         // Hoje existem soluções mais rebuscadas
         ListView lv = findViewById(R.id.fragment_first_lvAlunos);
-        List<Aluno> listaAlunos = dao.todos();
-        configuraAdapter(lv, listaAlunos);
+        configuraAdapter(lv);
         configuraClickItemLista(lv);
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -140,8 +141,8 @@ public class ListaAlunosActivity extends AppCompatActivity {
         startActivity(intentFormAluno);
     }
 
-    private void configuraAdapter(ListView lv, List<Aluno> listaAlunos) {
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaAlunos);
+    private void configuraAdapter(ListView lv) {
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         lv.setAdapter(adapter);
     }
 
