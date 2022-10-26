@@ -108,8 +108,10 @@ public class ListaAlunosActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //Log no Logcat
-                Log.i("Posição Aluno>>>>",String.valueOf(i) + " " + String.valueOf(l));
+                //Log de INFO no Logcat
+                Log.i("INFO Posição Aluno>>>>",String.valueOf(i) + " " + String.valueOf(l));
+                //Log de WARN no Logcat
+                Log.w("WARNING Posição>>>>",String.valueOf(i) + " " + String.valueOf(l));
                 Toast.makeText(ListaAlunosActivity.this,"clicou",Toast.LENGTH_LONG).show();
             }
         });
