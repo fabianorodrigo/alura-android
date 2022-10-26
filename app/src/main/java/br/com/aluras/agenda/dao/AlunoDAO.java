@@ -52,4 +52,11 @@ public class AlunoDAO {
     private void atualizaIds() {
         contadorIds++;
     }
+
+    public void remove(Aluno aluno) {
+        Aluno a = buscaAlunoPorId(aluno);
+        if(a != null) {
+            alunos.remove(a);
+        }
+    }
 }

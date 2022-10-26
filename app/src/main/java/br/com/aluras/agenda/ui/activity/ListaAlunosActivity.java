@@ -10,6 +10,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -35,6 +36,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityListaAlunosBinding binding;
     AlunoDAO dao = new AlunoDAO();
+    private ArrayAdapter<Aluno> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +100,20 @@ public class ListaAlunosActivity extends AppCompatActivity {
         List<Aluno> listaAlunos = dao.todos();
         configuraAdapter(lv, listaAlunos);
         configuraClickItemLista(lv);
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long id) {
+                Log.i("clic","cLIQUE LONGO " + String.valueOf(i));
+                Aluno aluno = (Aluno) adapterView.getItemAtPosition(i);
+                // remove da base de dados
+                dao.remove(aluno);
+                // remove da interface
+                adapter.remove(aluno);
+                // Se retornar TRUE, não for passar para o evento Click normal
+                // Se retornar FALSE, vai seguir para o próximo evento
+                return true;
+            }
+        });
     }
 
     private void configuraClickItemLista(ListView lv) {
@@ -125,7 +141,8 @@ public class ListaAlunosActivity extends AppCompatActivity {
     }
 
     private void configuraAdapter(ListView lv, List<Aluno> listaAlunos) {
-        lv.setAdapter(new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, listaAlunos));
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaAlunos);
+        lv.setAdapter(adapter);
     }
 
     @Override
