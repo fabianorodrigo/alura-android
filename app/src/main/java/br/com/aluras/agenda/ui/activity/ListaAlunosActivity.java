@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +35,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityListaAlunosBinding binding;
+    AlunoDAO dao = new AlunoDAO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.toolbar);
-
+        // configuração da barra de navegação
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -59,13 +61,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         // por alguma razão esse título está sendo sobreposto pelo comportamento dos Fragments
         this.setTitle("Opa Galera");
 
-        FloatingActionButton btAdd = findViewById(R.id.activity_ListaAlunos_botaoAdicionar);
-        btAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ListaAlunosActivity.this,FormAlunoActivity.class));
-            }
-        });
+        configuraBotaoAdicionaAluno();
         // exibir uma mensagem por um tempo
         //Toast.makeText(this, "Fabiano Nascimento",Toast.LENGTH_LONG).show();
 
@@ -76,19 +72,38 @@ public class ListaAlunosActivity extends AppCompatActivity {
     }
 
     /*
-    * OnResume vai ser executado quando desempilhar uma Activity que estava em cima.
-    * No nosso caso, quando o formulário de cadastro for fechado, queremos que busque
-    * novamente os dados novos na DAO
-    * */
+     * OnResume vai ser executado quando desempilhar uma Activity que estava em cima.
+     * No nosso caso, quando o formulário de cadastro for fechado, queremos que busque
+     * novamente os dados novos na DAO
+     * */
     @Override
     protected void onResume() {
         super.onResume();
-        AlunoDAO dao = new AlunoDAO();
+        configuraLista();
+    }
+
+    private void configuraBotaoAdicionaAluno() {
+        FloatingActionButton btAdd = findViewById(R.id.activity_ListaAlunos_botaoAdicionar);
+        btAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                formAluno();
+            }
+        });
+    }
+
+    private void formAluno() {
+        startActivity(new Intent(this,FormAlunoActivity.class));
+    }
+
+
+
+    private void configuraLista() {
         // ATENÇÃO: o ListView é uma solução simples não mais tão usada como no surgimento do Android
         // Hoje existem soluções mais rebuscadas
-        //List<String> alunos = new ArrayList<>(Arrays.asList("Fabiano","Katisoca","Rubão","Jujanelli","Mary Paul"));
         ListView lv = findViewById(R.id.fragment_first_lvAlunos);
         lv.setAdapter(new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1,dao.todos()));
+
     }
 
     @Override

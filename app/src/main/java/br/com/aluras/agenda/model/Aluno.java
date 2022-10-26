@@ -1,5 +1,7 @@
 package br.com.aluras.agenda.model;
 
+import androidx.annotation.NonNull;
+
 public class Aluno {
     private final String nome;
     private final String telefone;
@@ -23,6 +25,7 @@ public class Aluno {
         return email;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return this.nome;

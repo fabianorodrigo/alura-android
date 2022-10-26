@@ -4,13 +4,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import br.com.aluras.agenda.R;
+import br.com.aluras.agenda.dao.AlunoDAO;
 import br.com.aluras.agenda.databinding.FragmentFirstBinding;
+import br.com.aluras.agenda.model.Aluno;
 
 public class FirstFragment extends Fragment {
 
@@ -21,7 +25,6 @@ public class FirstFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
         binding = FragmentFirstBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
@@ -38,6 +41,7 @@ public class FirstFragment extends Fragment {
             }
         });
     }
+
 
     @Override
     public void onDestroyView() {
