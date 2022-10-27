@@ -1,38 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.FormAlunoActivity"
     android:orientation="vertical">
-
-    <EditText android:id="@+id/activity_FormAluno_nome"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="Nome"
-        android:inputType="textCapWords" />
+        android:orientation="vertical"
+        tools:context=".ui.activity.FormAlunoActivity">
 
-    <EditText android:id="@+id/activity_FormAluno_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="E-mail"
-        android:inputType="textEmailAddress"
-        tools:ignore="MissingConstraints" />
+        <EditText
+            android:id="@+id/activity_FormAluno_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Nome"
+            android:inputType="textCapWords" />
 
-    <EditText android:id="@+id/activity_FormAluno_telefone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="Telefone"
-        android:inputType="phone" />
+        <EditText
+            android:id="@+id/activity_FormAluno_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress"
+            tools:ignore="MissingConstraints" />
 
-    <Button android:id="@+id/activity_FormAluno_botao_salvar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="Salvar" />
+        <EditText
+            android:id="@+id/activity_FormAluno_telefone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Telefone"
+            android:inputType="phone" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/activity_FormAluno_endereco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Endereço"
+            android:inputType="textAutoComplete" />
+
+        <EditText
+            android:id="@+id/activity_FormAluno_cep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="CEP"
+            android:inputType="textPostalAddress" />
+
+        <EditText
+            android:id="@+id/activity_FormAluno_cidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Cidade"
+            android:inputType="textAutoComplete" />
+
+        <EditText
+            android:id="@+id/activity_FormAluno_uf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="UF"
+            android:inputType="textAutoComplete" />
+
+
+        <Button
+            android:id="@+id/activity_FormAluno_botao_salvar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Salvar" />
+
+    </LinearLayout>
+</ScrollView>

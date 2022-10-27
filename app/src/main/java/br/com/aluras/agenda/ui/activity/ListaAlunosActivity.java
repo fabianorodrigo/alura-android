@@ -73,6 +73,12 @@ public class ListaAlunosActivity extends AppCompatActivity {
         /*TextView aluno = new TextView(this);
         aluno.setText("Fabiano Nascimento");
         setContentView(aluno);*/
+
+        for(int i = 0; i < 7;i++){
+            dao.salva(new Aluno("José Nascimento","(33) 9999-1111","fabrodrigo@hotmail.com"));
+            dao.salva(new Aluno("Maria Nascimento","(31) 8888-2222","kassiusfab@hotmail.com"));
+            dao.salva(new Aluno("Nicolas Nascimento","(31) 8888-2222","kassiusfab@hotmail.com"));
+        }
     }
 
     /*

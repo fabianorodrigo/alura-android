@@ -11,11 +11,6 @@ public class AlunoDAO {
     private final static List<Aluno> alunos = new ArrayList<Aluno>();
     private static int contadorIds = 1;
 
-    static {
-        alunos.add(new Aluno("Fabiano Nascimento","(33) 9999-1111","fabrodrigo@hotmail.com"));
-        alunos.add(new Aluno("Kassius Nascimento","(31) 8888-2222","kassiusfab@hotmail.com"));
-    }
-
     public AlunoDAO(){
     }
 
