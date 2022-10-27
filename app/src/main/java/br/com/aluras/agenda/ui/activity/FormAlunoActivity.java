@@ -7,6 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,6 +47,24 @@ public class FormAlunoActivity extends AppCompatActivity {
             setTitle(TITULO_APPBAR_NOVO_ALUNO);
             aluno = new Aluno();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.activity_formaluno_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Log.w("onOptionsItemSelected","clicou");
+        int itemId = item.getItemId();
+        Log.w("onOptionsItemSelected", String.valueOf(itemId));
+        Log.w("onOptionsItemSelected",String.valueOf(R.id.activity_formaluno_menu_salvar));
+        if(itemId == R.id.activity_formaluno_menu_salvar){
+            finalizaFormulario();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void preencheCampos() {
