@@ -41,14 +41,21 @@ public class AlunoListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        // o attachToRoot = false indica que nosso adapter não é responsável por adicionar a viewCriada dentro da viewGroup
-        // ou seja, nós apenas criamos e retornamos. Com isso, a inclusão no viewGroup é delegada para o Android
-        View viewCriada = LayoutInflater.from(context).inflate(R.layout.item_aluno, viewGroup, false);
-        TextView nomeAluno = viewCriada.findViewById(R.id.item_aluno_nome);
-        nomeAluno.setText(this.alunos.get(i).getNome());
-        TextView telefoneAluno = viewCriada.findViewById(R.id.item_aluno_telefone);
-        telefoneAluno.setText(this.alunos.get(i).getTelefone());
-        return viewCriada;
+        ViewHolderAluno viewHolder;
+        if (view == null) {
+            // o attachToRoot = false indica que nosso adapter não é responsável por adicionar a viewCriada dentro da viewGroup
+            // ou seja, nós apenas criamos e retornamos. Com isso, a inclusão no viewGroup é delegada para o Android
+            view = LayoutInflater.from(context).inflate(R.layout.item_aluno, viewGroup, false);
+            viewHolder = new ViewHolderAluno(view);
+            view.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolderAluno) view.getTag();
+        }
+
+        viewHolder.getNomeAluno().setText(this.alunos.get(i).getNome());
+        viewHolder.getTelefoneAluno().setText(this.alunos.get(i).getTelefone());
+
+        return view;
     }
 
     public void remove(Aluno aluno) {
