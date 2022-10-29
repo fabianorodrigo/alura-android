@@ -6,9 +6,17 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="author">Fabiano Nascimento</string>
-    <string name="extras_Aluno">aluno</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="nome">Nome</string>
+    <string name="e_mail">E-mail</string>
+    <string name="telefone">Telefone</string>
+    <string name="endere_o">Endereço</string>
+    <string name="salvar">Salvar</string>
+    <string name="descriptionButtonEmail">TODO</string>
+    <string name="descriptionButtonAdicionarAluno">TODO</string>
+    <string name="cep">CEP</string>
+    <string name="cidade">Cidade</string>
+    <string name="uf">UF</string>
+    <string name="remover_aluno">Remover Aluno</string>
+    <string name="teste_pra_n_o_fazer_nada">Teste pra não fazer nada</string>
 </resources>

@@ -16,57 +16,60 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="Nome"
-            android:inputType="textCapWords" />
+            android:hint="@string/nome"
+            android:inputType="textCapWords"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/activity_FormAluno_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="E-mail"
+            android:hint="@string/e_mail"
             android:inputType="textEmailAddress"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/activity_FormAluno_telefone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="Telefone"
-            android:inputType="phone" />
+            android:hint="@string/telefone"
+            android:inputType="phone"
+            android:autofillHints="" />
 
         <EditText
-            android:id="@+id/activity_FormAluno_endereco"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="Endereço"
-            android:inputType="textAutoComplete" />
+            android:hint="@string/endere_o"
+            android:inputType="textAutoComplete"
+            android:autofillHints="" />
 
         <EditText
-            android:id="@+id/activity_FormAluno_cep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="CEP"
-            android:inputType="textPostalAddress" />
+            android:hint="@string/cep"
+            android:inputType="textPostalAddress"
+            android:autofillHints="" />
 
         <EditText
-            android:id="@+id/activity_FormAluno_cidade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="Cidade"
-            android:inputType="textAutoComplete" />
+            android:hint="@string/cidade"
+            android:inputType="textAutoComplete"
+            android:autofillHints="" />
 
         <EditText
-            android:id="@+id/activity_FormAluno_uf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="UF"
-            android:inputType="textAutoComplete" />
+            android:hint="@string/uf"
+            android:inputType="textAutoComplete"
+            android:autofillHints="" />
 
 
         <Button
@@ -74,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Salvar" />
+            android:text="@string/salvar" />
 
     </LinearLayout>
 </ScrollView>
