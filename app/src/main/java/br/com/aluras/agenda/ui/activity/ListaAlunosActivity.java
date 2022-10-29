@@ -2,6 +2,9 @@ package br.com.aluras.agenda.ui.activity;
 
 import static br.com.aluras.agenda.ui.activity.ConstantesActitivies.CHAVE_ALUNO;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -89,12 +92,25 @@ public class ListaAlunosActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        if(itemId == R.id.activity_listaalunos_menu_remover) {
-            AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-            Aluno aluno = adapter.getItem((menuInfo.position));
-            remove(aluno);
+        if (itemId == R.id.activity_listaalunos_menu_remover) {
+            confirmaRemocao(item);
         }
         return super.onContextItemSelected(item);
+    }
+
+    private void confirmaRemocao(@NonNull MenuItem item) {
+        new AlertDialog.Builder(this)
+                .setTitle("Removendo Aluno")
+                .setMessage("Tem certeza que quer remover o aluno?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                        Aluno aluno = adapter.getItem((menuInfo.position));
+                        remove(aluno);
+                    }
+                })
+                .setNegativeButton("Não", null).show();
     }
 
     private void remove(Aluno aluno) {
@@ -153,12 +169,13 @@ public class ListaAlunosActivity extends AppCompatActivity {
             }
         });
     }
+
     private void abreFormularioModoInsercao() {
-        startActivity(new Intent(this,FormAlunoActivity.class));
+        startActivity(new Intent(this, FormAlunoActivity.class));
     }
 
     private void abreFormularioModoEdicao(Aluno aluno) {
-        Intent intentFormAluno = new Intent(ListaAlunosActivity.this,FormAlunoActivity.class);
+        Intent intentFormAluno = new Intent(ListaAlunosActivity.this, FormAlunoActivity.class);
         // o extra é uma forma de mandar para uma próxima Activity com algum dado/objeto (serializable)
         intentFormAluno.putExtra(CHAVE_ALUNO, aluno);
         startActivity(intentFormAluno);
