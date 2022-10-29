@@ -4,8 +4,8 @@
 
     <item
         android:id="@+id/activity_listaalunos_menu_remover"
-        android:title="Remover Aluno" />
+        android:title="@string/remover_aluno" />
     <item
         android:id="@+id/activity_listaalunos_menu_teste"
-        android:title="Teste pra não fazer nada" />
+        android:title="@string/teste_pra_n_o_fazer_nada" />
 </menu>
