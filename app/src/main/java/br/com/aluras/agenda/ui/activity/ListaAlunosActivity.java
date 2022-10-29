@@ -4,41 +4,35 @@ import static br.com.aluras.agenda.ui.activity.ConstantesActitivies.CHAVE_ALUNO;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.util.Log;
-import android.view.ContextMenu;
-import android.view.View;
-
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import java.util.List;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import br.com.aluras.agenda.R;
 import br.com.aluras.agenda.dao.AlunoDAO;
 import br.com.aluras.agenda.databinding.ActivityListaAlunosBinding;
 import br.com.aluras.agenda.model.Aluno;
+import br.com.aluras.agenda.ui.activity.adapters.AlunoListAdapter;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityListaAlunosBinding binding;
     AlunoDAO dao = new AlunoDAO();
-    private ArrayAdapter<Aluno> adapter;
+    private AlunoListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,8 +83,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        adapter.clear();
-        adapter.addAll(dao.todos());
+        adapter.atualizaAlunos(dao.todos());
     }
 
     @Override
@@ -178,8 +171,12 @@ public class ListaAlunosActivity extends AppCompatActivity {
     }
 
     private void configuraAdapter(ListView lv) {
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-        lv.setAdapter(adapter);
+        //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        // a linha acima utilizava um layout/componente e o também o Adapter nativos do Android, na linha
+        // abaixo passamos a utilizar um layout/componente criado neste projeto bem como a criação de um
+        // Adapter especilizado para trabalhar com layout/componente do projeto
+        adapter = new AlunoListAdapter(this);
+        lv.setAdapter(this.adapter);
     }
 
     @Override
