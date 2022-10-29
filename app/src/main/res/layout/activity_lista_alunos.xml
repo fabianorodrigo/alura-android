@@ -16,15 +16,16 @@
     <include layout="@layout/content_main" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/activity_ListaAlunos_botaoEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email"
-        android:contentDescription="@string/descriptionButtonEmail" />
+        app:srcCompat="@android:drawable/ic_dialog_email" />
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -39,7 +40,6 @@
         android:layout_gravity="bottom|start"
         android:layout_margin="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_action_add"
-        android:contentDescription="@string/descriptionButtonAdicionarAluno" />
+        android:src="@drawable/ic_action_add" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
