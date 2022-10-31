@@ -8,7 +8,7 @@ import java.util.List;
 import br.com.aluras.agenda.model.Aluno;
 
 public class AlunoDAO {
-    private final static List<Aluno> alunos = new ArrayList<Aluno>();
+    private final static List<Aluno> alunos = new ArrayList<>();
     private static int contadorIds = 1;
 
     public AlunoDAO(){
