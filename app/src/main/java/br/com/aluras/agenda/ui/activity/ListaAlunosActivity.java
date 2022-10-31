@@ -27,6 +27,7 @@ import br.com.aluras.agenda.R;
 import br.com.aluras.agenda.dao.AlunoDAO;
 import br.com.aluras.agenda.databinding.ActivityListaAlunosBinding;
 import br.com.aluras.agenda.model.Aluno;
+import br.com.aluras.agenda.ui.ListaAlunosView;
 import br.com.aluras.agenda.ui.activity.adapters.AlunoListAdapter;
 
 @SuppressWarnings("CommentedOutCode")
@@ -34,8 +35,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityListaAlunosBinding binding;
-    AlunoDAO dao = new AlunoDAO();
-    private AlunoListAdapter adapter;
+    private ListaAlunosView listaAlunosView = new ListaAlunosView(this);
 
     @SuppressWarnings("CommentedOutCode")
     @Override
@@ -76,7 +76,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        adapter.atualizaAlunos(dao.todos());
+        listaAlunosView.atualizaAlunos();
     }
 
     @Override
@@ -89,29 +89,13 @@ public class ListaAlunosActivity extends AppCompatActivity {
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.activity_listaalunos_menu_remover) {
-            confirmaRemocao(item);
+            listaAlunosView.confirmaRemocao(item);
         }
         return super.onContextItemSelected(item);
     }
 
-    private void confirmaRemocao(@NonNull MenuItem item) {
-        new AlertDialog.Builder(this)
-                .setTitle("Removendo Aluno")
-                .setMessage("Tem certeza que quer remover o aluno?")
-                .setPositiveButton("Sim", (dialogInterface, i) -> {
-                    AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-                    Aluno aluno = adapter.getItem((menuInfo.position));
-                    remove(aluno);
-                })
-                .setNegativeButton("Não", null).show();
-    }
 
-    private void remove(Aluno aluno) {
-        // remove da base de dados
-        dao.remove(aluno);
-        // remove da interface
-        adapter.remove(aluno);
-    }
+
 
     private void configuraBotaoAdicionaAluno() {
         FloatingActionButton btAdd = findViewById(R.id.activity_ListaAlunos_botaoAdicionar);
@@ -122,7 +106,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         // ATENÇÃO: o ListView é uma solução simples não mais tão usada como no surgimento do Android
         // Hoje existem soluções mais rebuscadas
         ListView lv = findViewById(R.id.fragment_first_lvAlunos);
-        configuraAdapter(lv);
+        listaAlunosView.configuraAdapter(lv);
         configuraClickItemLista(lv);
         registerForContextMenu(lv);
     }
@@ -166,14 +150,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         startActivity(intentFormAluno);
     }
 
-    private void configuraAdapter(ListView lv) {
-        //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-        // a linha acima utilizava um layout/componente e o também o Adapter nativos do Android, na linha
-        // abaixo passamos a utilizar um layout/componente criado neste projeto bem como a criação de um
-        // Adapter especilizado para trabalhar com layout/componente do projeto
-        adapter = new AlunoListAdapter(this);
-        lv.setAdapter(this.adapter);
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
