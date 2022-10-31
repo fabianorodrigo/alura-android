@@ -3,7 +3,6 @@ package br.com.aluras.agenda.ui.activity;
 import static br.com.aluras.agenda.ui.activity.ConstantesActitivies.CHAVE_ALUNO;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +29,7 @@ import br.com.aluras.agenda.databinding.ActivityListaAlunosBinding;
 import br.com.aluras.agenda.model.Aluno;
 import br.com.aluras.agenda.ui.activity.adapters.AlunoListAdapter;
 
+@SuppressWarnings("CommentedOutCode")
 public class ListaAlunosActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
@@ -37,6 +37,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     AlunoDAO dao = new AlunoDAO();
     private AlunoListAdapter adapter;
 
+    @SuppressWarnings("CommentedOutCode")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

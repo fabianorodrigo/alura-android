@@ -2,13 +2,11 @@ package br.com.aluras.agenda.ui.activity;
 
 import static br.com.aluras.agenda.ui.activity.ConstantesActitivies.CHAVE_ALUNO;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
