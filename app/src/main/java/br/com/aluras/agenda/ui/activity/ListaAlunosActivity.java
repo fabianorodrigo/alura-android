@@ -51,13 +51,8 @@ public class ListaAlunosActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        binding.activityListaAlunosBotaoAdicionar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        binding.activityListaAlunosBotaoAdicionar.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
 
         // por alguma razão esse título está sendo sobreposto pelo comportamento dos Fragments
         this.setTitle("Opa Galera");
@@ -103,13 +98,10 @@ public class ListaAlunosActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle("Removendo Aluno")
                 .setMessage("Tem certeza que quer remover o aluno?")
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-                        Aluno aluno = adapter.getItem((menuInfo.position));
-                        remove(aluno);
-                    }
+                .setPositiveButton("Sim", (dialogInterface, i) -> {
+                    AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                    Aluno aluno = adapter.getItem((menuInfo.position));
+                    remove(aluno);
                 })
                 .setNegativeButton("Não", null).show();
     }
@@ -123,12 +115,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     private void configuraBotaoAdicionaAluno() {
         FloatingActionButton btAdd = findViewById(R.id.activity_ListaAlunos_botaoAdicionar);
-        btAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                abreFormularioModoInsercao();
-            }
-        });
+        btAdd.setOnClickListener(view -> abreFormularioModoInsercao());
     }
 
     private void configuraLista() {
@@ -158,16 +145,13 @@ public class ListaAlunosActivity extends AppCompatActivity {
     }*/
 
     private void configuraClickItemLista(ListView lv) {
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
-                Aluno alunoEscolhido = (Aluno) adapterView.getItemAtPosition(i);
-                //Log de INFO no Logcat
-                //Log.i("Aluno escolhido >>>>",alunoEscolhido.getNome());
-                //Log de WARN no Logcat
-                //Log.w("WARNING Posição>>>>",String.valueOf(i) + " " + String.valueOf(l));
-                abreFormularioModoEdicao(alunoEscolhido);
-            }
+        lv.setOnItemClickListener((adapterView, view, i, id) -> {
+            Aluno alunoEscolhido = (Aluno) adapterView.getItemAtPosition(i);
+            //Log de INFO no Logcat
+            //Log.i("Aluno escolhido >>>>",alunoEscolhido.getNome());
+            //Log de WARN no Logcat
+            //Log.w("WARNING Posição>>>>",String.valueOf(i) + " " + String.valueOf(l));
+            abreFormularioModoEdicao(alunoEscolhido);
         });
     }
 

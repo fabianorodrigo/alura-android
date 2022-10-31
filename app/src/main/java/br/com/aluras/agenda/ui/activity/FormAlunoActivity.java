@@ -79,12 +79,7 @@ public class FormAlunoActivity extends AppCompatActivity {
 
     private void configuraBotaoSalvar() {
         Button botaoSalvar = findViewById(R.id.activity_FormAluno_botao_salvar);
-        botaoSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finalizaFormulario();
-            }
-        });
+        botaoSalvar.setOnClickListener(view -> finalizaFormulario());
     }
 
     private void finalizaFormulario() {
