@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'br.com.aluras.agenda'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "br.com.aluras.agenda"

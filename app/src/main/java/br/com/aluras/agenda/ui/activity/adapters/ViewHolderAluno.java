@@ -10,8 +10,8 @@ import br.com.aluras.agenda.R;
 // Implementação do View Holder Pattern https://www.spreys.com/view-holder-design-pattern-for-android/
 public class ViewHolderAluno {
 
-    private TextView nomeAluno;
-    private TextView telefoneAluno;
+    private final TextView nomeAluno;
+    private final TextView telefoneAluno;
 
     public ViewHolderAluno(@NonNull View view) {
         this.nomeAluno = view.findViewById(R.id.item_aluno_nome);

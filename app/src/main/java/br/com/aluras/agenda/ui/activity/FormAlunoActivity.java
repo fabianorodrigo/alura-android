@@ -22,7 +22,7 @@ import br.com.aluras.agenda.model.Aluno;
 public class FormAlunoActivity extends AppCompatActivity {
     private static final String TITULO_APPBAR_EDITA_ALUNO = "Editar Aluno";
     private static final String TITULO_APPBAR_NOVO_ALUNO = "Novo Aluno";
-    private AlunoDAO dao = new AlunoDAO();
+    private final AlunoDAO dao = new AlunoDAO();
     private Aluno aluno;
     private EditText campoNome;
     private EditText campoEmail;
