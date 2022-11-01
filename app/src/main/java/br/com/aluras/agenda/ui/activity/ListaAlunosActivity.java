@@ -35,12 +35,14 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityListaAlunosBinding binding;
-    private ListaAlunosView listaAlunosView = new ListaAlunosView(this);
+    private ListaAlunosView listaAlunosView;
 
     @SuppressWarnings("CommentedOutCode")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        listaAlunosView = new ListaAlunosView(this);
 
         binding = ActivityListaAlunosBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
