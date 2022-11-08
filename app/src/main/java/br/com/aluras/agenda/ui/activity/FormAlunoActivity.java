@@ -3,6 +3,7 @@ package br.com.aluras.agenda.ui.activity;
 import static br.com.aluras.agenda.ui.activity.ConstantesActitivies.CHAVE_ALUNO;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,16 +16,18 @@ import android.widget.EditText;
 
 import br.com.aluras.agenda.R;
 import br.com.aluras.agenda.dao.AlunoDAO;
+import br.com.aluras.agenda.database.AgendaDatabase;
+import br.com.aluras.agenda.database.RoomAlunoDAO;
 import br.com.aluras.agenda.model.Aluno;
 
 public class FormAlunoActivity extends AppCompatActivity {
     private static final String TITULO_APPBAR_EDITA_ALUNO = "Editar Aluno";
     private static final String TITULO_APPBAR_NOVO_ALUNO = "Novo Aluno";
-    private final AlunoDAO dao = new AlunoDAO();
     private Aluno aluno;
     private EditText campoNome;
     private EditText campoEmail;
     private EditText campoTelefone;
+    private RoomAlunoDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class FormAlunoActivity extends AppCompatActivity {
         inicializacaoCampos();
         configuraBotaoSalvar();
         carregaAluno();
+        dao = AgendaDatabase.getInstance(this).getAlunoDAO();
     }
 
     private void carregaAluno() {
