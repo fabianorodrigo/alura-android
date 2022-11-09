@@ -9,14 +9,18 @@ import androidx.room.RoomDatabase;
 
 import br.com.aluras.agenda.model.Aluno;
 
-@Database(entities = {Aluno.class}, version = 1, exportSchema = false)
+@Database(entities = {Aluno.class}, version = 2, exportSchema = false)
 public abstract class AgendaDatabase extends RoomDatabase {
 
     private static final String AGENDA_DB = "Agenda.db";
+    private static AgendaDatabase instance = null;
 
     public abstract RoomAlunoDAO getAlunoDAO();
 
     public static AgendaDatabase getInstance(Context context){
-        return Room.databaseBuilder(context, AgendaDatabase.class, AGENDA_DB).allowMainThreadQueries().build();
+        if(instance == null) {
+            instance = Room.databaseBuilder(context, AgendaDatabase.class, AGENDA_DB).allowMainThreadQueries().build();
+        }
+        return instance;
     }
 }

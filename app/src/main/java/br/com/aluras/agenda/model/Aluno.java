@@ -15,6 +15,7 @@ public class Aluno implements Serializable {
     private String nome;
     private String telefone;
     private String email;
+    private String endereco;
 
     @Ignore
     public Aluno(String nome, String telefone, String email) {
@@ -53,6 +54,14 @@ public class Aluno implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     @NonNull

@@ -41,33 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="@string/endere_o"
+            android:hint="@string/endereco"
             android:inputType="textAutoComplete" />
-
-        <EditText
-            android:id="@+id/activity_FormAluno_cep"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:hint="@string/cep"
-            android:inputType="textPostalAddress" />
-
-        <EditText
-            android:id="@+id/activity_FormAluno_cidade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:hint="@string/cidade"
-            android:inputType="textAutoComplete" />
-
-        <EditText
-            android:id="@+id/activity_FormAluno_uf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:hint="@string/uf"
-            android:inputType="textAutoComplete" />
-
 
         <Button
             android:id="@+id/activity_FormAluno_botao_salvar"

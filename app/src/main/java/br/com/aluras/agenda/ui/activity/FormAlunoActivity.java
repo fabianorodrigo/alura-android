@@ -27,6 +27,7 @@ public class FormAlunoActivity extends AppCompatActivity {
     private EditText campoNome;
     private EditText campoEmail;
     private EditText campoTelefone;
+    private EditText campoEndereco;
     private RoomAlunoDAO dao;
 
     @Override
@@ -73,12 +74,14 @@ public class FormAlunoActivity extends AppCompatActivity {
         campoNome.setText(aluno.getNome());
         campoEmail.setText(aluno.getEmail());
         campoTelefone.setText(aluno.getTelefone());
+        campoEndereco.setText(aluno.getEndereco());
     }
 
     private void inicializacaoCampos() {
         campoNome = findViewById(R.id.activity_FormAluno_nome);
         campoEmail = findViewById(R.id.activity_FormAluno_email);
         campoTelefone = findViewById(R.id.activity_FormAluno_telefone);
+        campoEndereco = findViewById(R.id.activity_FormAluno_endereco);
     }
 
     private void configuraBotaoSalvar() {
@@ -100,9 +103,11 @@ public class FormAlunoActivity extends AppCompatActivity {
         String nome = campoNome.getText().toString();
         String telefone = campoTelefone.getText().toString();
         String email = campoEmail.getText().toString();
+        String endereco = campoEndereco.getText().toString();
         aluno.setNome(nome);
         aluno.setTelefone(telefone);
         aluno.setEmail(email);
+        aluno.setEndereco(endereco);
     }
 
     private void salva(Aluno aluno){
