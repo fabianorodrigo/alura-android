@@ -7,12 +7,15 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import br.com.aluras.agenda.database.converter.ConversorCalendar;
 import br.com.aluras.agenda.model.Aluno;
 
-@Database(entities = {Aluno.class}, version = 3, exportSchema = false)
+@Database(entities = {Aluno.class}, version = 4, exportSchema = false)
+@TypeConverters({ConversorCalendar.class})
 public abstract class AgendaDatabase extends RoomDatabase {
 
     private static final String AGENDA_DB = "Agenda.db";
@@ -44,6 +47,11 @@ public abstract class AgendaDatabase extends RoomDatabase {
                             database.execSQL("DROP TABLE Aluno");
                             //e renomear a nova tabela com o nome da tabela antiga
                             database.execSQL("ALTER TABLE AlunoTmp RENAME TO Aluno");
+                        }
+                    },new Migration(3,4) {
+                        @Override
+                        public void migrate(@NonNull SupportSQLiteDatabase database) {
+                            database.execSQL("ALTER TABLE Aluno ADD COLUMN dataCriacao INTEGER");
                         }
                     })
                     .build();
