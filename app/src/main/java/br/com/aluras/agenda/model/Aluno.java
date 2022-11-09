@@ -27,16 +27,18 @@ public class Aluno implements Serializable {
     public Aluno() {
     }
 
-    public int getId(){
+    public int getId() {
         return this.id;
     }
-    public void setId(int id){
+
+    public void setId(int id) {
         this.id = id;
     }
 
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -44,6 +46,7 @@ public class Aluno implements Serializable {
     public String getTelefone() {
         return telefone;
     }
+
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
