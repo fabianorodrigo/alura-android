@@ -21,16 +21,6 @@ public class Aluno implements Serializable {
 
     private Calendar dataCriacao = Calendar.getInstance();
 
-    @Ignore
-    public Aluno(String nome, String telefone, String email) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-    }
-
-    public Aluno() {
-    }
-
     public int getId() {
         return this.id;
     }
@@ -77,11 +67,6 @@ public class Aluno implements Serializable {
 
     public void setDataCriacao(Calendar dataCriacao) {
         this.dataCriacao = dataCriacao;
-    }
-
-    public String getDataFormatada(){
-        SimpleDateFormat formatador =  new SimpleDateFormat("dd/MM/yyyy");
-        return formatador.format(dataCriacao.getTime());
     }
 
     @NonNull

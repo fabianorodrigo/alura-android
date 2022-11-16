@@ -51,7 +51,7 @@ public class AlunoListAdapter extends BaseAdapter {
             viewHolder = (ViewHolderAluno) view.getTag();
         }
 
-        viewHolder.getNomeAluno().setText(this.alunos.get(i).getNome() + " " + this.alunos.get(i).getDataFormatada());
+        viewHolder.getNomeAluno().setText(this.alunos.get(i).getNome());
         viewHolder.getTelefoneAluno().setText(this.alunos.get(i).getTelefone());
 
         return view;
