@@ -1,4 +1,4 @@
-package br.com.aluras.agenda.database;
+package br.com.aluras.agenda.database.dao;
 
 
 import androidx.room.Dao;

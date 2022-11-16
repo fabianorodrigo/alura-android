@@ -7,13 +7,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
-import androidx.room.Room;
 
-import java.util.List;
-
-import br.com.aluras.agenda.dao.AlunoDAO;
 import br.com.aluras.agenda.database.AgendaDatabase;
-import br.com.aluras.agenda.database.RoomAlunoDAO;
+import br.com.aluras.agenda.database.dao.RoomAlunoDAO;
 import br.com.aluras.agenda.model.Aluno;
 import br.com.aluras.agenda.ui.activity.adapters.AlunoListAdapter;
 

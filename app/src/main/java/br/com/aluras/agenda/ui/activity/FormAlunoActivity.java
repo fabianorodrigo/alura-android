@@ -3,21 +3,18 @@ package br.com.aluras.agenda.ui.activity;
 import static br.com.aluras.agenda.ui.activity.ConstantesActitivies.CHAVE_ALUNO;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import br.com.aluras.agenda.R;
-import br.com.aluras.agenda.dao.AlunoDAO;
 import br.com.aluras.agenda.database.AgendaDatabase;
-import br.com.aluras.agenda.database.RoomAlunoDAO;
+import br.com.aluras.agenda.database.dao.RoomAlunoDAO;
 import br.com.aluras.agenda.model.Aluno;
 
 public class FormAlunoActivity extends AppCompatActivity {

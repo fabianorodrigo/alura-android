@@ -24,7 +24,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import br.com.aluras.agenda.R;
-import br.com.aluras.agenda.dao.AlunoDAO;
 import br.com.aluras.agenda.databinding.ActivityListaAlunosBinding;
 import br.com.aluras.agenda.model.Aluno;
 import br.com.aluras.agenda.ui.ListaAlunosView;

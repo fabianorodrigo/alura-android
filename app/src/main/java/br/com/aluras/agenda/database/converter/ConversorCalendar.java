@@ -6,13 +6,17 @@ import java.util.Calendar;
 
 public class ConversorCalendar {
     @TypeConverter
-    public Long toLong(Calendar calendar){
-        return calendar.getTimeInMillis();
+    public Long toLong(Calendar calendar) {
+        if (calendar != null) {
+            return calendar.getTimeInMillis();
+        }
+        return null;
     }
+
     @TypeConverter
-    public Calendar toCalendar(Long timeInMillis){
+    public Calendar toCalendar(Long timeInMillis) {
         Calendar c = Calendar.getInstance();
-        if(timeInMillis != null) {
+        if (timeInMillis != null) {
             c.setTimeInMillis(timeInMillis);
         }
         return c;
