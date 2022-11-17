@@ -23,7 +23,8 @@ public class FormAlunoActivity extends AppCompatActivity {
     private Aluno aluno;
     private EditText campoNome;
     private EditText campoEmail;
-    private EditText campoTelefone;
+    private EditText campoTelefoneFixo;
+    private EditText campoTelefoneCelular;
     private EditText campoEndereco;
     private RoomAlunoDAO dao;
 
@@ -70,14 +71,16 @@ public class FormAlunoActivity extends AppCompatActivity {
     private void preencheCampos() {
         campoNome.setText(aluno.getNome());
         campoEmail.setText(aluno.getEmail());
-        campoTelefone.setText(aluno.getTelefone());
+        campoTelefoneFixo.setText(aluno.getTelefoneFixo());
+        campoTelefoneCelular.setText(aluno.getTelefoneCelular());
         campoEndereco.setText(aluno.getEndereco());
     }
 
     private void inicializacaoCampos() {
         campoNome = findViewById(R.id.activity_FormAluno_nome);
         campoEmail = findViewById(R.id.activity_FormAluno_email);
-        campoTelefone = findViewById(R.id.activity_FormAluno_telefone);
+        campoTelefoneFixo = findViewById(R.id.activity_FormAluno_telefone_fixo);
+        campoTelefoneCelular = findViewById(R.id.activity_FormAluno_telefone_celular);
         campoEndereco = findViewById(R.id.activity_FormAluno_endereco);
     }
 
@@ -98,11 +101,13 @@ public class FormAlunoActivity extends AppCompatActivity {
 
     private void preencheAluno() {
         String nome = campoNome.getText().toString();
-        String telefone = campoTelefone.getText().toString();
+        String telefoneFixo = campoTelefoneFixo.getText().toString();
+        String telefoneCelular = campoTelefoneCelular.getText().toString();
         String email = campoEmail.getText().toString();
         String endereco = campoEndereco.getText().toString();
         aluno.setNome(nome);
-        aluno.setTelefone(telefone);
+        aluno.setTelefoneFixo(telefoneFixo);
+        aluno.setTelefoneCelular(telefoneCelular);
         aluno.setEmail(email);
         aluno.setEndereco(endereco);
     }

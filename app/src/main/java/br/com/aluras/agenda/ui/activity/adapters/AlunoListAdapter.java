@@ -52,7 +52,7 @@ public class AlunoListAdapter extends BaseAdapter {
         }
 
         viewHolder.getNomeAluno().setText(this.alunos.get(i).getNome());
-        viewHolder.getTelefoneAluno().setText(this.alunos.get(i).getTelefone());
+        viewHolder.getTelefoneAluno().setText(this.alunos.get(i).getTelefoneFixo());
 
         return view;
     }
