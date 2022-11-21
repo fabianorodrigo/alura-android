@@ -15,7 +15,7 @@ import br.com.aluras.agenda.model.Aluno;
 public interface RoomAlunoDAO {
 
     @Insert
-    void salva(Aluno aluno);
+    Long salva(Aluno aluno);
 
     @Update
     void edita(Aluno aluno);

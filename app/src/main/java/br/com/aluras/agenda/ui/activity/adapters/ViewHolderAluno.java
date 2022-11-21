@@ -11,14 +11,11 @@ import br.com.aluras.agenda.R;
 public class ViewHolderAluno {
 
     private final TextView nomeAluno;
-    private final TextView telefoneAluno;
+    private final TextView telefoneCelularAluno;
 
     public ViewHolderAluno(@NonNull View view) {
         this.nomeAluno = view.findViewById(R.id.item_aluno_nome);
-        //telefoneAluno.setText(this.alunos.get(i).getTelefone());
-
-        this.telefoneAluno = view.findViewById(R.id.item_aluno_telefone);
-        //nomeAluno.setText(this.alunos.get(i).getNome());
+        this.telefoneCelularAluno = view.findViewById(R.id.item_aluno_telefone_celular);
 
     }
 
@@ -26,7 +23,5 @@ public class ViewHolderAluno {
         return nomeAluno;
     }
 
-    public TextView getTelefoneAluno() {
-        return telefoneAluno;
-    }
+    public TextView getTelefoneCelularAluno(){ return telefoneCelularAluno;}
 }

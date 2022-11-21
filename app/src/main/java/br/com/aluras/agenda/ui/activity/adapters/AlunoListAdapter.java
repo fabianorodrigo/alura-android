@@ -10,15 +10,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.aluras.agenda.R;
+import br.com.aluras.agenda.database.AgendaDatabase;
+import br.com.aluras.agenda.database.dao.RoomTelefoneDAO;
 import br.com.aluras.agenda.model.Aluno;
+import br.com.aluras.agenda.model.Telefone;
+import br.com.aluras.agenda.model.TipoTelefone;
 
 public class AlunoListAdapter extends BaseAdapter {
 
     private final List<Aluno> alunos = new ArrayList<>();
     private final Context context;
-
+    private final RoomTelefoneDAO dao;
     public AlunoListAdapter(Context context){
         this.context = context;
+        this.dao = AgendaDatabase.getInstance(this.context).getTelefoneDAO();
     }
 
 
@@ -52,8 +57,11 @@ public class AlunoListAdapter extends BaseAdapter {
         }
 
         viewHolder.getNomeAluno().setText(this.alunos.get(i).getNome());
-        viewHolder.getTelefoneAluno().setText(this.alunos.get(i).getTelefoneFixo());
-
+        for(Telefone t : dao.buscaTelefonesAluno(this.alunos.get(i).getId())){
+            if(t.getTipo() == TipoTelefone.CELULAR){
+                viewHolder.getTelefoneCelularAluno().setText(t.getNumero());
+            }
+        }
         return view;
     }
 

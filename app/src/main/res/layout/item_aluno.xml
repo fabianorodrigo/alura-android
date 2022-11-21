@@ -15,11 +15,19 @@
     <!-- o tools é só em tempo de desenvolvimento -->
 
     <TextView
-        android:id="@+id/item_aluno_telefone"
+        android:id="@+id/item_aluno_telefone_fixo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         tools:text="(21) 3278-1787"
+        />
+
+    <TextView
+        android:id="@+id/item_aluno_telefone_celular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        tools:text="(21) 99544-5858"
         />
 
 </LinearLayout>
